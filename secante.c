@@ -26,11 +26,12 @@ void secante(double (*f)(double), double x0, double x1, int n){
 
 int main(){
     double f(double x){
-        return x*x - 2;
+        double L = 8.58, r = 3.22, V = 103.9;
+        return L*((0.5*M_PI*pow(r,2)) - ((pow(r,2))*asin(x/r)) - (x*sqrt(pow(r,2) - pow(x,2)))) - V;
     }
 
-    double x0 = 0.64799;
-    double x1 = 2.23778;
+    double x0 = 0.34;
+    double x1 = 2.81;
     int n = 5;
 
     secante(f, x0, x1, n);

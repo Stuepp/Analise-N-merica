@@ -26,10 +26,11 @@ void bissection(double (*f)(double), double a, double b, int n){
 int main(){
     //Exemplo 1: f(x) = e^x -2x² + x - 1.5 [0.16894,0.87585]
     double f(double x){
-        return pow(M_E,x) + -2*(x*x) + x - 1.5;
+        double L = 8.58, r = 3.22, V = 103.9;
+        return L*((0.5*M_PI*pow(r,2)) - ((pow(r,2))*asin(x/r)) - (x*sqrt(pow(r,2) - pow(x,2)))) - V;
     }
-    double a = 0.16894;
-    double b = 0.87585;
+    double a = 0;
+    double b = 3.22;
     int n = 12;
 
     //Exemplo 2: Crescimento populacional
