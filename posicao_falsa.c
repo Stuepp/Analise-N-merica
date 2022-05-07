@@ -30,12 +30,12 @@ void false_position(double (*f)(double),double a,double b,int n){
 
 int main(){
     double f(double x){
-        double L = 8.58, r = 3.22, V = 103.9;
-        return L*((0.5*M_PI*pow(r,2)) - ((pow(r,2))*asin(x/r)) - (x*sqrt(pow(r,2) - pow(x,2)))) - V;
+        double B = 16.47, H = 8.81;
+        return B*(H - (4*x)) + (4*x)*((3*x) - H);
     }
     //intervalo inicial
     double a = 0;
-    double b = 3.22;
+    double b = 4.41;
 
     int n = 11; // número de iterações
 

@@ -22,17 +22,15 @@ void newton(double (*f)(double), double (*df)(double), double x0, int n){
 
 int main(){
     double f(double x){
-        double r = 4.73, ps = 134.03, pw = 1000,
-            Vesfera = (4.0/3.0) * M_PI * pow(r,3),
-            V = Vesfera - ((ps * Vesfera) / pw);
-        return (((M_PI * pow(x,2)) / 3.0) * ((3*r) - x)) - V;
+        double B = 16.47, H = 8.81;
+        return B*(H - (4*x)) + (4*x)*((3*x) - H);
     }
     double df(double x){
-        double r = 4.73;
-        return x*((6.28319*r) - (3.14159*x));
+         double B = 16.47, H = 8.81;
+        return -4*(B+H - 6*x);
     }
 
-    double x0=3.7;
+    double x0=2.16;
     int n = 5;
 
     newton(f, df, x0,n);

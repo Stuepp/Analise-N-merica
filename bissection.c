@@ -3,6 +3,7 @@
 
 //#define M_E 2.71828182845904523536028747135266250
 
+
 void bissection(double (*f)(double), double a, double b, int n){
     if(f(a) * f(b) >= 0){
         printf("Não é possível usar Bolzano para garantir a existência de uma raiz em [%4.f,%4.f]", a, b);
@@ -26,26 +27,30 @@ void bissection(double (*f)(double), double a, double b, int n){
 int main(){
     //Exemplo 1: f(x) = e^x -2x² + x - 1.5 [0.16894,0.87585]
     double f(double x){
-        double L = 8.58, r = 3.22, V = 103.9;
-        return L*((0.5*M_PI*pow(r,2)) - ((pow(r,2))*asin(x/r)) - (x*sqrt(pow(r,2) - pow(x,2)))) - V;
+        double B = 16.47, H = 8.81;
+        return B*(H - (4*x)) + (4*x)*((3*x) - H);
     }
     double a = 0;
-    double b = 3.22;
+    double b = 4.41;
     int n = 12;
 
     //Exemplo 2: Crescimento populacional
     double P(double x){
-        double e = exp(x);
-        return e * 1000000 + (537142 / x) * (e - 1) - 1863961;
+        double pop = 117417491;
+        double porc = 0.25;
+        double infec = pop*porc;
+        double e = exp(x), n = 117417491,
+            lamb = 1.41*pow(10,-10), exp = lamb*(n+1)*x;
+        return ((n+1) / (1 + (n*pow(e,-exp)))) - infec;
     }
-    double a1 = 0.001;
-    double b1 = 2;
-    int n1 = 20;
+    double a1 = 0;
+    double b1 = 0.2245;
+    int n1 = 12;
 
     //bissection(f, a, b, n)
-    bissection(f, a, b, n);
+    //bissection(f, a, b, n);
     /*
     printf("\nexemplo 2\n");
-    bissection(P, a1, b1, n1);
     */
+    bissection(P, a1, b1, n1);
 }
