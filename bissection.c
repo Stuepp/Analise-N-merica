@@ -36,15 +36,13 @@ int main(){
 
     //Exemplo 2: Crescimento populacional
     double P(double x){
-        double pop = 117417491;
         double porc = 0.25;
-        double infec = pop*porc;
-        double e = exp(x), n = 117417491,
+        double n = 117417491, infec = n*porc,
             lamb = 1.41*pow(10,-10), exp = lamb*(n+1)*x;
-        return ((n+1) / (1 + (n*pow(e,-exp)))) - infec;
+        return ((n+1.0) / (1.0 + (n*pow(M_E,-exp)))) - infec;
     }
     double a1 = 0;
-    double b1 = 0.2245;
+    double b1 = 2245;
     int n1 = 12;
 
     //bissection(f, a, b, n)

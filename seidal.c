@@ -12,7 +12,7 @@ void jacobi(double A[ROWS][ROWS], double B[ROWS], double chute[ROWS], int n){
                 }
             }
             bi /= A[i][i];
-            printf("x %d^(%d) = %.16f", i+1, k+1, bi);
+            printf(" x %d^(%d) = %.16f", i+1, k+1, bi);
             chute[i] = bi;
         }
         printf("\n");
@@ -20,11 +20,11 @@ void jacobi(double A[ROWS][ROWS], double B[ROWS], double chute[ROWS], int n){
 }
 
 int main(){
-    double A[ROWS][ROWS] = {{4,1,-1},{-1,3,1},{1,-1,5}};
-    double B[ROWS][ROWS] = {5,6,4};
+    double A[ROWS][ROWS] = {{-4.22,1.66,-0.96},{-2.24,4.62,0.78},{-3.52,-2.36,-7.48}};
+    double B[ROWS][ROWS] = {2.03,2.36,4.92};
 
-    double chute[ROWS] = {-1-1,-1};
-    int n = 5;
+    double chute[ROWS] = {-3.63,1.88,-2.23};
+    int n = 18;
 
     jacobi(A,B,chute, n);
 }
