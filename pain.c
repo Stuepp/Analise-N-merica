@@ -13,34 +13,34 @@ void imprimeMatriz(double matriz[ROW][COL]){
     }
 }
 
+void trocaLinha(double matriz[ROW][COL], int r1, int r2){
+        for(int k=0;k<COL;k++){
+        double temp = matriz[r1][k];
+        matriz[r1][k] = matriz[r2][k];
+        matriz[r2][k] = temp;
+    }
+}
+
 void operacoes(double matriz[ROW][COL]){
-    // −2/9⋅L2→L2 
+    // 1/3⋅L3+L2→L2
+    for(int i = 0; i < COL; i++){
+        matriz[1][i] = ((1.0/3.0)*matriz[2][i]) + matriz[1][i];
+    }
+    //L2↔L4
+    trocaLinha(matriz, 1, 3);
+    // 7/8⋅L1→L1
    for(int i = 0; i < COL; i++){
-        matriz[1][i] *= (-2.0/9.0);
-    }
-    // −1/3⋅L4+L3→L3
-    for(int i = 0; i < COL; i++){
-        matriz[2][i] = ((-1.0/3.0)*matriz[3][i]) + matriz[2][i];
-    }
-    // −5/6⋅L3→L3 
-    for(int i = 0; i < COL; i++){
-        matriz[2][i] *= (-5.0/6.0);
+        matriz[0][i] *= (7.0/8.0);
     }
     //L2↔L3  
-    for(int k=0;k<COL;k++){
-        double temp = matriz[1][k];
-        matriz[1][k] = matriz[2][k];
-        matriz[2][k] = temp;
-    }
-    //L1↔L4  
-    for(int k=0;k<COL;k++){
-        double temp = matriz[0][k];
-        matriz[0][k] = matriz[3][k];
-        matriz[3][k] = temp;
-    }
-    // 5⋅L3+L2→L2
+    trocaLinha(matriz,1,2);
+    // −7/5⋅L4→L4
     for(int i = 0; i < COL; i++){
-        matriz[1][i] = ((-5.0/1.0)*matriz[2][i]) + matriz[1][i];
+        matriz[3][i] *= (-7.0/5.0);
+    }
+    // 1/3⋅L2+L3→L3
+    for(int i = 0; i < COL; i++){
+        matriz[2][i] = ((1.0/3.0)*matriz[1][i]) + matriz[2][i];
     }
 
     imprimeMatriz(matriz);
@@ -48,10 +48,10 @@ void operacoes(double matriz[ROW][COL]){
 
 int main(){
     double matriz[ROW][COL] = {
-        {1.0/6.0, -9.0/4.0,-4.0/3.0},
-        {-1.0/6.0,1.0/2.0,2.0/1.0},
-        {-1.0/9.0,-1.0/9.0,8.0/7.0},
-        {-4.0/1.0,4.0/5.0,-4.0/3.0}
+        {1.0/1.0, -4.0/3.0,2.0/3.0},
+        {-7.0/9.0,-7.0/4.0,-1.0/2.0},
+        {-1.0/6.0,7.0/3.0,4.0/5.0},
+        {8.0/3.0,9.0/4.0,-2.0/3.0}
     };
     printf("matriz[0][0]: %.16f \n", matriz[0][0]);
 
