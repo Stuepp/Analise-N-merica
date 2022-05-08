@@ -2,7 +2,7 @@
 #include <math.h>
 
 #define ROW 3
-#define COL 4
+#define COL 3
 
 void imprimeMatriz(double matriz[ROW][COL]){
     for(int row = 0; row < ROW; row++){
@@ -27,32 +27,28 @@ void operacaoEmLinha(double matriz[ROW][COL], int row, double num){
     }
 }
 
-void opercaoEmDuasLinhas(double matriz[ROW][COL], int r1, int r2, double num){
+void opercaoEmDuasLinhas(double matriz[ROW][COL], int target, int r2, double num){
     for(int i = 0; i < COL; i++){
-        matriz[r1][i] = (num*matriz[r2][i]) + matriz[r1][i];
+        matriz[target][i] = (num*matriz[r2][i]) + matriz[target][i];
     }
 }
 
 void operacoes(double matriz[ROW][COL]){
-    //L1↔L3
-    trocaLinha(matriz, 0, 2);
-    // −1⋅L2+L3→L3
-    opercaoEmDuasLinhas(matriz, 2, 1, (-1.0/1.0));
-    // −9/7⋅L1+L2→L2
-    opercaoEmDuasLinhas(matriz, 1, 0, (-9.0/7.0));
-   //L2↔L3  
-    trocaLinha(matriz,1,2);
-    // 3⋅L2→L2
-    operacaoEmLinha(matriz, 1, (3.0/1.0));
+    // −7/5⋅L1+L2→L2
+    opercaoEmDuasLinhas(matriz, 1, 0, (-7.0/5.0));
+    // −7/5⋅L1+L3→L3 
+    opercaoEmDuasLinhas(matriz, 2, 0, (-7.0/5.0));
+    // −56/51⋅L2+L3→L3 
+    opercaoEmDuasLinhas(matriz, 2, 1, (-56.0/51.0));
 
     imprimeMatriz(matriz);
 }
 
 int main(){
     double matriz[ROW][COL] = {
-        {-2.0/1.0, 9.0/5.0,2.0/1.0,2.0/3.0},
-        {-1.0/6.0,5.0/2.0,-1.0/5.0,4.0/3.0},
-        {5.0/7.0,1.0/6.0,8.0/7.0,-2.0/1.0}
+        {5.0/1.0, -3.0/1.0,-6.0/1.0},
+        {7.0/1.0,6.0/1.0,7.0/1.0},
+        {7.0/1.0,7.0/1.0,-1.0/1.0}
     };
 
     printf("Matriz Original:\n");
