@@ -45,11 +45,17 @@ void reverse_sub(double E[ROWS][COLS]){
 }
 
 int main(){
-    double E[ROWS][COLS] = {
+    /*double E[ROWS][COLS] = {
         {2,4,6,2,4},
         {1,2,-1,3,8},
         {-3,1,-2,1,-1},
         {1,3,-3,-2,6}
+    };*/
+    double E[ROWS][COLS] = {
+        {0,0,-1,1,-64},
+        {0,-1,1,0,35},
+        {-1,1,0,0,100},
+        {1,0,0,-1,-71}
     };
 
     print_matrix(E);
