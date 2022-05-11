@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-#define ROWS 4
-#define COLS 5
+#define ROWS 3
+#define COLS 4
 
 void print_matrix(double matrix[ROWS][COLS]){
     for(int i=0; i < ROWS; i++){
         for(int j = 0; j < COLS; j++){
-            printf("%f\t", matrix[i][j]);
+            printf("%.16f\t", matrix[i][j]);
         }
         printf("\n");
     }
@@ -45,17 +45,14 @@ void reverse_sub(double E[ROWS][COLS]){
 }
 
 int main(){
-    /*double E[ROWS][COLS] = {
-        {2,4,6,2,4},
-        {1,2,-1,3,8},
-        {-3,1,-2,1,-1},
-        {1,3,-3,-2,6}
-    };*/
+    double m1 = 68.68, m2 = 56.25, m3 = 44.49,  // massas
+     c1 = 9.99, c2 = 15.51, c3 = 20.94, // coefs de arrasto
+     v = 9.95, // velocidade
+     g = 9.81; // gravidade
     double E[ROWS][COLS] = {
-        {0,0,-1,1,-64},
-        {0,-1,1,0,35},
-        {-1,1,0,0,100},
-        {1,0,0,-1,-71}
+        {m1,1.0,0.0,(m1*g)-(c1*v)},
+        {m2,-1.0,1.0,(m2*g)-(c2*v)},
+        {m3,0.0,-1.0,(m3*g)-(c3*v)}
     };
 
     print_matrix(E);
