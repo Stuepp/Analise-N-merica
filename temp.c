@@ -19,6 +19,9 @@ int main(){
     double areia = 4980.0, cascalhoFino = 5488.0, cascalhoGrosso = 3333.0;
     double mina1 = 0.47*areia + 0.34*cascalhoFino + 0.19*cascalhoGrosso;
     double mina2 = 0.31*areia + 0.57*cascalhoFino + 0.12*cascalhoGrosso;
-    double mina2 = 0.31*areia + 0.57*cascalhoFino + 0.12*cascalhoGrosso;
+    double mina3 = 0.3*areia + 0.17*cascalhoFino + 0.53*cascalhoGrosso;
+    printf("mina1: %16.f\n", mina1);
+    printf("mina2: %16.f\n", mina2);
+    printf("mina3: %16.f\n", mina3);
     return 0;
 }
