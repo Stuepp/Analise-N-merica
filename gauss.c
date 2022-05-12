@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #define ROWS 3
 #define COLS 4
@@ -45,14 +46,24 @@ void reverse_sub(double E[ROWS][COLS]){
 }
 
 int main(){
-    double m1 = 68.68, m2 = 56.25, m3 = 44.49,  // massas
-     c1 = 9.99, c2 = 15.51, c3 = 20.94, // coefs de arrasto
-     v = 9.95, // velocidade
-     g = 9.81; // gravidade
+    /*double m1 = 178, m2 = 138, m3 = 100,  // massas
+     u1 = 0.25, u2 = 0.44, u3 = 0.54, // const. da mola
+     g = 9.81, // gravidade
+     alpha = 44; // angulo
     double E[ROWS][COLS] = {
-        {m1,1.0,0.0,(m1*g)-(c1*v)},
-        {m2,-1.0,1.0,(m2*g)-(c2*v)},
-        {m3,0.0,-1.0,(m3*g)-(c3*v)}
+        {m1, 1.0, 0.0, (m1 * g * sin(alpha)) - (u1 * m1 * g * cos(alpha))},
+        {m2, -1.0, 1.0 , (m2 * g * sin(alpha)) - (u2 * m2 * g * cos(alpha))},
+        {m3, 0.0, -1.0, (m3 * g * sin(alpha)) - (u3 * m3 * g * cos(alpha))}
+    };*/
+    double v = 9.99,
+        m1 = 71.87, m2 = 58.22, m3 = 43.11,
+        c1 = 11.96, c2 = 19.16, c3 = 23.29,
+        g = 9.81;
+
+    double E[ROWS][COLS] = {
+        {m1, 1.0, 0.0, (m1*g) - (c1*v)},
+        {m2, -1.0, 1.0, (m2*g) - (c2*v)},
+        {m3, 0.0, -1.0, (m3*g) - (c3*v)}
     };
 
     print_matrix(E);
