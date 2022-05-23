@@ -20,10 +20,7 @@ def best_poly(x: list[float], y: list[float], grau: int=1) -> list[float]:
     return np.linalg.solve(A, B)
 
 def poly(x, coefs):
-    s = coefs[0]
-    for i, ci in enumerate(coefs[1:], 1):
-        s += ci * x ** i
-    return s
+    return a * np.exp(b * x)
 
 def build_func(coefs):
     def temp(x):
