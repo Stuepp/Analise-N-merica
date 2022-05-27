@@ -20,10 +20,7 @@ def best_poly(x: list[float], y: list[float], grau: int=1) -> list[float]:
     return np.linalg.solve(A, B)
 
 def poly(x, coefs):
-    s = coefs[0]
-    for i, ci in enumerate(coefs[1:], 1):
-        s += ci * x ** i
-    return s
+    return a * np.exp(b * x)
 
 def build_func(coefs):
     def temp(x):
@@ -31,28 +28,45 @@ def build_func(coefs):
     return temp
 
 def modelo(x):
-    a, b = -0.5, 0.5
+    a, b = -40, -30
     erro = a + (b - a) * np.random.random()
-    return 2 + 2.34 * x -1.86 * x ** 2 + erro
+    return 2.5 * np.e ** (1.47 * x) + erro
 
 if __name__ == '__main__':
-    # x = [-2,-1,0,1,3]
-    # y = [2,0,1,2,1.5]
-    x = np.linspace(-3, 3, 50)
+
+    x = np.linspace(-2, 2, 10)
     y = [modelo(xi) for xi in x]
-    grau = 2
 
-    coefs = best_poly(x, y, grau)
-    p = build_func(coefs)
+    # transladar os pontos para cima
+    k = abs(min(y)) + 1
+    yt = [yi + k for yi in y]
+    print(f'{y = }')
+    y_ = np.log(yt)
 
-    print(f'{coefs = }')
+    grau = 1
 
-    # para vizualização
+    a0, a1 = best_poly(x, y_, grau)
+
+    print(f'{a0 = } e {a1 = }')
+
+    a = np.exp(a0)
+    b = a1
+
+    print(f'{a = } e {b = }')
+
+    p = build_func(a, b)
+    
+    def q(x):
+        return p(x) - k
+
+    # para visualização
     import matplotlib.pyplot as plt
 
+    plt.scatter(x, y)
+
     t = np.linspace(min(x), max(x), 200)
-    pt = [p(ti) for ti in t]
+    qt = [q(ti) for ti in t]
 
-    plt.plot(t, pt)
+    plt.plot(t, qt, color='r')
 
-    plt.savefig('best_poly.png')
+    plt.savefig('best_exp.png')
