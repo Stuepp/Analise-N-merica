@@ -46,7 +46,7 @@ int main(){
     int n = (b - a) / h;
     double coluna_F1[numElemFristCol] = {};
     for(int i = 0; i < numElemFristCol; i++){
-        coluna_F1[i] = trapz(f, a, b, (i + 1) * n);
+        coluna_F1[i] = trapz(f, a, b,pow(2, i) * n);
         printf("\n%.16f", coluna_F1[i]);
     }
     romberg(coluna_F1);
