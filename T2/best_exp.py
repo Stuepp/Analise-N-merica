@@ -21,7 +21,7 @@ def best_poly(x, y, grau = 1):
     return np.linalg.solve(A, B)
 
 def poly(x, a, b):
-    return a*(x / (x+b))
+    return a*x*math.e**(b*x)
 
 def build_func(a, b):
     def temp(x):
@@ -32,8 +32,8 @@ if __name__ == '__main__':
 
     x = [0.5275, 1.2798, 1.8354, 2.995, 3.5563, 4.8647, 5.7268, 6.186, 6.9649, 7.8094, 8.3545, 9.779]
     y = [1.5421, 2.7825, 3.1861, 3.3406, 3.1962, 2.6972, 2.2813, 2.0573, 1.7578, 1.4752, 1.2498, 0.8957]
-    x_ = np.divide(1,x)
-    y_ = np.divide(1,y) # pode mudar com a func
+    x_ = x # pode mudar com a func
+    y_ = np.log(np.divide(y,x)) # pode mudar com a func
 
     grau = 1 # pode mudar com a func
 
@@ -41,8 +41,8 @@ if __name__ == '__main__':
 
     print(f'{a0 = } e {a1 = }')
 
-    a = 1/a0 # pode mudar com a func
-    b = a1*a # pode mudar com a func
+    a = math.e**a1 # pode mudar com a func
+    b = a0 # pode mudar com a func
 
     print(f'{a = } e {b = }')
 
