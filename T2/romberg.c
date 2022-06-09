@@ -35,7 +35,7 @@ void romberg(double array[]){
 
     // exemplo
     // aroximar a integral exp(-x*x), de 0 a 1
-double f(double x){
+double f(double x){ // func
         return exp(-x*x);
 }
 
