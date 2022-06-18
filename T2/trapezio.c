@@ -17,13 +17,13 @@ void trapz(double(*f)(double), double a, double b, int n){
 
 int main(){
     double func1(double x){
-        return exp(-x*x);
+        return sqrt(sin(cos(log(x*x + 1) + 2) + 3) + 4);
     }
-    double 
-        a = 0,
-        b = 1;
-    int n = 10; // número de intervalos
-
-    trapz(func1, a, b, n);
+    double intervalo[] = {-1.769,1.72};
+    //int n = 6683; // número de intervalos
+    int n[] = {2, 22, 39, 73, 99, 106, 245, 419, 520, 923, 1146, 8047};
+    for(int i = 0; i < 12; i++){
+        trapz(func1, intervalo[0], intervalo[1], n[i]);
+    }
     return 0;
 }
