@@ -2,7 +2,7 @@
 #include <math.h>
 
 // 4 poisa primeira coluna deve ter 'error_order/2' elementos
-#define error_order 16
+#define error_order 8 // k
 #define  numElemFristCol 8
 
 // método dos trapezios
@@ -36,18 +36,22 @@ void romberg(double array[]){
     // exemplo
     // aroximar a integral exp(-x*x), de 0 a 1
 double f(double x){ // func
-        return exp(-x*x);
+        //return pow(x + (double)(1.0/x),2);
+        //return sqrt(1 + x*x);
+        //return (exp(x) * sin(x)) / (1 + x*x);
+        //return exp(-x*x);
+        //return cos(pow(-x,2) / 3.0);
 }
 
 int main(){
-    double a = 0;
-    double b = 1;
-    double h = 0.5;
+    double a = 1.96;
+    double b = 0.908;
+    double h = 0.25;
     int n = (b - a) / h;
     double coluna_F1[numElemFristCol] = {};
     for(int i = 0; i < numElemFristCol; i++){
         coluna_F1[i] = trapz(f, a, b,pow(2, i) * n);
-        printf("\n%.16f", coluna_F1[i]);
+        //printf("\n%.16f", coluna_F1[i]);
     }
     romberg(coluna_F1);
 
