@@ -1,0 +1,13 @@
+    #for i in range(5):
+    #    aprox = quadratura(g[i], x=nos[i], c=pesos[i])
+    #    print(f'{aprox = } exata em poly de grau menor que {2*i}')
+    aprox = quadratura(g[0], x=nos[2], c=pesos[i])
+    print(f'{aprox = } exata em poly de grau menor que {k[0]}')
+    aprox = quadratura(g[0], x=nos[4], c=pesos[i])
+    print(f'{aprox = } exata em poly de grau menor que {k[1]}')
+    aprox = quadratura(g[0], x=nos[6], c=pesos[i])
+    print(f'{aprox = } exata em poly de grau menor que {k[2]}')
+    aprox = quadratura(g[0], x=nos[i], c=pesos[i])
+    print(f'{aprox = } exata em poly de grau menor que {k[3]}')
+    aprox = quadratura(g[0], x=nos[i], c=pesos[i])
+    print(f'{aprox = } exata em poly de grau menor que {k[4]}')
