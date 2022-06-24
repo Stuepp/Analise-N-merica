@@ -47,12 +47,12 @@ if __name__ == '__main__':
         g=9.81
         m=68.8
         cd=0.37
-        return math.sqrt((g*m)/cd) * math.tanh(math.sqrt((g*m)/cd) * x)
+        return math.sqrt((g*m)/cd) * math.tanh(math.sqrt((g*cd)/m) * x)
     a = (-0.631, 1.96, 0.163, -1.017, 0.894)
     b = (0.908, 3.034, 2.413, 1.43, 2.066)
     k = (4, 8, 12, 6, 10)
 
     for i in range(2, 10):
-        g = change(f_1, a[4], b[4])
+        g = change(f_1, 0,11.72)
         aprox = quadratura(g, x=nos[i], c=pesos[i])
         print(f'{aprox = } exata em poly de grau menor que {2*i} i = {i}')
