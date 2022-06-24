@@ -58,7 +58,7 @@ void romberg(double array[]){
             array[j] = numer / denom;
         }
     }
-    printf ("ROMBERG: %.16f", ORDEM_ERRO, array[0]);
+    printf ("ROMBERG: %.16f", array[0]);
 }
 
 double trapz_romberg(double a, double b, int n){
