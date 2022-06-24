@@ -41,12 +41,15 @@ double f(double x){ // func
         //return (exp(x) * sin(x)) / (1 + x*x);
         //return exp(-x*x);
         //return cos(pow(-x,2) / 3.0);
+        
+        double g=9.81, m=68.8, cd=0.37;
+        return sqrt((g*m) / cd) * tanh(sqrt((g*cd) / m) * x);
 }
 
 int main(){
-    double a = 1.96;
-    double b = 0.908;
-    double h = 0.25;
+    double a = 0;
+    double b = 11.72;
+    double h = 11.72/10.0;
     int n = (b - a) / h;
     double coluna_F1[numElemFristCol] = {};
     for(int i = 0; i < numElemFristCol; i++){
