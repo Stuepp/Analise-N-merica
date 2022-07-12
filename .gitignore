@@ -4,4 +4,4 @@
 .gitignore
 .vscode/c_cpp_properties.json
 .vscode/launch.json
-fourier.png
+*.png
