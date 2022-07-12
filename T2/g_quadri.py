@@ -9,10 +9,9 @@ def change(f, a, b):
 
 if __name__ == '__main__':
     x = (
-        -0.39,
-        0.33,
-        -0.86,
-        0.86
+        -0.493,
+        0.664,
+        1.981
     )
     c = (
         0.65,
@@ -43,11 +42,16 @@ if __name__ == '__main__':
         10: (0.29552422471475287, 0.29552422471475287, 0.26926671930999635, 0.26926671930999635, 0.21908636251598204, 0.21908636251598204, 0.1494513491505806, 0.1494513491505806, 0.06667134430868814, 0.06667134430868814)
     }
 
+    """
     def f_1(x): return math.exp(-x**2)
     def f_2(x): return math.log(math.sqrt(1+x**2))
     def f_3(x): return math.exp(x)*math.sin(x)/(1+x**2)
     def f_4(x): return math.cos(-x**2/3)
     def f_5(x): return (x+1/x)**2
+    """
+    def func(x): return 2 * math.sin(x) + math.cos(-x**2)
+
+    funcs = ['1', 'x', 'x**2', 'x**3', 'x**4', 'x**5']
 
     #aprox = quadratura(f_1, x, c)
 
@@ -56,12 +60,14 @@ if __name__ == '__main__':
     #for i in  range(2, 6):
     #    aprox_2 = quadratura(f_1, x=nos[i], c=pesos[i])
 
-    a = (-0.631, 1.96, 0.163, -1.017, 0.894)
-    b = (0.908, 3.034, 2.413, 1.43, 2.066)
+    #a = (-0.631, 1.96, 0.163, -1.017, 0.894)
+    #b = (0.908, 3.034, 2.413, 1.43, 2.066)
+    a = -1.126
+    b = 2.349
     #g = {change(f_1, a[i], b[i]), change(f_2, a[i], b[i]), change(f_3, a[i], b[i]), change(f_4, a[i], b[i]), change(f_5, a[i], b[i]), }
     k = (4, 8, 12, 6, 10)
 
-    for i in range(2, 10):
-        g = change(f_5, a[4], b[4])
+    for i in range(2, 11):
+        g = change(func, a, b)
         aprox = quadratura(g, x=nos[i], c=pesos[i])
         print(f'{aprox = } exata em poly de grau menor que {2*i} i = {i}')
