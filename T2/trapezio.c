@@ -29,9 +29,9 @@ double trapz_bases_diferentes(double x[], double y[]){ // soma das áreas dos tr
 
 int main(){
     double func1(double x){
-        return sqrt(sin(cos(log(x*x + 1) + 2) + 3) + 4);
+        return 2 * sin(x) + cos(pow(-x,2));
     }
-    double intervalo[] = {-1.769,1.72};
+    double intervalo[] = {-1.126,2.349};
     //int n = 6683; // número de intervalos
     int n[] = {2, 22, 39, 73, 99, 106, 245, 419, 520, 923, 1146, 8047};
     //double x[] = {0.195, 0.295, 0.367, 0.648, 0.759, 0.812, 0.939, 0.999, 1.051, 1.069, 1.214, 1.254, 1.272, 1.334, 1.518, 1.622, 1.714, 1.729, 2.061, 2.147, 2.177, 2.197, 2.412, 2.458, 2.637, 2.64, 2.92, 3.007, 3.011, 3.066, 3.355, 3.583, 3.597, 3.82, 3.848, 3.904, 3.916, 4.095, 4.135, 4.158, 4.168, 4.442, 4.466, 4.52, 4.647, 4.787, 4.804},
@@ -40,10 +40,11 @@ int main(){
     double x[] = {0.0,10.0,20.0,30.0,40.0,50.0,60.0},
         y[] = {4.5875,7.03416667,3.09,0.64416667,7.76916667,4.12055556,5.39055556};
 
-    printf("%.16f", trapz_bases_diferentes(x, y));
+    //printf("%.16f", trapz_bases_diferentes(x, y));
     /*for(int i = 0; i < 12; i++){
         trapz(func1, intervalo[0], intervalo[1], n[i]);
     }*/
+    trapz(func1, intervalo[0], intervalo[1], 256);
 
     return 0;
 }

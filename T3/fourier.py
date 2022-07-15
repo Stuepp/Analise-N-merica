@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 def trapz(f, a, b, n):
     h = abs(b - a) / n
@@ -40,21 +41,20 @@ def fourier(c, a, b):
 
 if __name__ == '__main__':
 
-    def f(x):
-        if x < 0:
-            return 3 + x / np.pi
-        return 1 + x / np.pi
+    def f(x): return 2 * math.sin(x) + math.cos(-x**2)
 
     num_intervals = 256
-    num_coeffs = 100 # numero de termos na serie == 2 * num_coeffs + 1
+    num_coeffs = 6 # numero de termos na serie == 2 * num_coeffs + 1
+    intervalo = [-1.126, 2.349]
 
-    c = trapz(f, -np.pi, np.pi, num_intervals) / (2 * np.pi)
+    c = trapz(f, intervalo[0], intervalo[1], num_intervals) / (2 * intervalo[1])
     a = [coeff_a(f, ni, num_intervals) for ni in range(1, num_coeffs)]
     b = [coeff_b(f, ni, num_intervals) for ni in range(1, num_coeffs)]
 
     serie = fourier(c, a, b)
 
     # apenas para visualização
+    """
     import matplotlib.pyplot as plt
 
     t = np.linspace(-np.pi, np.pi, 200)
@@ -66,3 +66,4 @@ if __name__ == '__main__':
     plt.plot(t, st)
 
     plt.savefig('fourier.png')
+    """

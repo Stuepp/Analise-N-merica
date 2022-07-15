@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     p = build_func(a, b)
 
-    x_values = [2.903, 7.0083, 8.3974]
+    x_values = [-0.493, 0.664, 1.981]
     
     for xi_v in x_values:
         print(p(xi_v))

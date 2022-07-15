@@ -42,38 +42,30 @@ if __name__ == '__main__':
         10: (0.29552422471475287, 0.29552422471475287, 0.26926671930999635, 0.26926671930999635, 0.21908636251598204, 0.21908636251598204, 0.1494513491505806, 0.1494513491505806, 0.06667134430868814, 0.06667134430868814)
     }
 
-    """
-    def f_1(x): return math.exp(-x**2)
-    def f_2(x): return math.log(math.sqrt(1+x**2))
-    def f_3(x): return math.exp(x)*math.sin(x)/(1+x**2)
-    def f_4(x): return math.cos(-x**2/3)
-    def f_5(x): return (x+1/x)**2
-    """
-    def func(x): return 2 * math.sin(x) + math.cos(-x**2)
+    def f(x): return x**2 * math.cos(x * math.sin(math.log(1 + x**2)))
+    def f1(x): return 2
+    def f2(x): return x - 1
+    def f3(x): return x**2 + 1
+    def f4(x): return x**3 + x - 3
+    def f5(x): return 0.5 * x**4 - 3 * x**2 + 1
+    def f6(x): return x**5 - 4 * x + 2
+    def f7(x): return x**7-x
 
-    funcs = ['1', 'x', 'x**2', 'x**3', 'x**4', 'x**5']
+    funcs = [f1, f2, f3, f4, f5, f6, f7]
 
-    #aprox = quadratura(f_1, x, c)
+    coefs = [1.0043401156509797,0.41718952619088184,-1.2538742319588911,-0.11037537655284078,-0.7718151962262627,0.0693024769965998,-0.011957529179984244]
 
-    #print(f'{aprox_1 = }')
+    def g(x):
+        soma = 0
+        for k in range(len(coefs)):
+            soma += coefs[k]*funcs[k](x)
+        return soma
 
-    #for i in  range(2, 6):
-    #    aprox_2 = quadratura(f_1, x=nos[i], c=pesos[i])
+    def func(x): return (f(x) - g(x))**2
 
-    #a = (-0.631, 1.96, 0.163, -1.017, 0.894)
-    #b = (0.908, 3.034, 2.413, 1.43, 2.066)
-    a = -1.126
-    b = 2.349
-    #g = {change(f_1, a[i], b[i]), change(f_2, a[i], b[i]), change(f_3, a[i], b[i]), change(f_4, a[i], b[i]), change(f_5, a[i], b[i]), }
-    k = (4, 8, 12, 6, 10)
+    a = -2.064
+    b = 2.01
 
-    g = change(func, a, b)
-    aprox = quadratura(g, x=nos[10], c=pesos[10])
+    g2 = change(func, a, b)
+    aprox = quadratura(g2, x=nos[10], c=pesos[10])
     print(f'{aprox = } exata em poly de grau menor que {2*10} i = {10}')
-
-    """
-    for i in range(2, 11):
-        g = change(func, a, b)
-        aprox = quadratura(g, x=nos[i], c=pesos[i])
-        print(f'{aprox = } exata em poly de grau menor que {2*i} i = {i}')
-    """
