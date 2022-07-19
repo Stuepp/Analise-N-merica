@@ -33,14 +33,18 @@ def best_func(f, funcs, a, b, n):
             if j >= i:
                 def f_ij(x):
                     return funcs[j](x) * funcs[i](x)
-                integral_ij = trapz(f_ij, a, b, n)
+                hs = [h / 2 ** i for i in range(ki)]
+                col1 = [trapz(f_ij, a, b, hi) for hi in hs]
+                integral_ij = romberg(col1)
                 A[i][j] = integral_ij
             else:
                 A[i][j] = A[j][i]
         # preencher a matriz B
         def ffi(x):
             return f(x) * funcs[i](x)
-        B.append(trapz(ffi, a, b, n))
+        hs = [h / 2 ** i for i in range(ki)]
+        col1 = [trapz(ffi, a, b, hi) for hi in hs]
+        B.append(romberg(col1))
     return np.linalg.solve(A, B)
 
 # exemplo
@@ -61,15 +65,18 @@ funcs = [f1, f2, f3, f4, f5, f6, f7]
 
 coefs = best_func(f, funcs, a, b, n)
 print('coefs')
-"""
+
 for i in range(len(coefs)):
     print(f'{coefs[i]}')
-"""
 
+
+
+"""
 coluna_F1= []
 for i in range(8):
     coluna_F1.append(trapz(f, a, b, n))
 romberg(coluna_F1)
+"""
 
 def g(x):
     soma = 0
