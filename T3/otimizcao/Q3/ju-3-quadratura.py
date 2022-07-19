@@ -272,7 +272,7 @@ if __name__ == '__main__':
         print(f'g({x}) = {g(x)}')
 
     # quadratura gaussina
-    exact_for_degree_less_than = 20
+    exact_for_degree_less_than = 24
 
 
     def func_erro(x):
