@@ -25,11 +25,12 @@ def euler_mid(f, x0, y0, h, n):
 
 if __name__ == '__main__':
     def f(x, y):
-        return y * (2 - x) + x + 1
+        k = 0.0625
+        return k*y
     
-    x0, y0 = 0.0, 2.70955
+    x0, y0 = 0.0, 1027261 # x0 = t, y0 = individuos
     h = 0.0625
-    n = 1
+    n = 1 / h
     r1 = true_euler(f, x0, y0, h, n)
     #print(r1)
     #x1, y1 = zip(*r1)
