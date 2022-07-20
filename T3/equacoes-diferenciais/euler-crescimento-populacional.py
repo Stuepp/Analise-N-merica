@@ -1,10 +1,8 @@
-import numpy as np
-
-def true_euler(f, x0, y0, h, n):
-    for k in range(n):
-        y0 += h * f(x0, y0)
+def true_euler(f, k, x0, y0, h, n):
+    for i in range(n):
+        y0 += h * f(x0, y0, k)
         x0 += h        
-        print(f'x_{k + 1}={x0} e y_{k+1}={y0}')
+        print(f'x_{i + 1}={x0} e y_{i+1}={y0}')
 
 def euler(f, x0, y0, h, n):
     vals = []
@@ -24,14 +22,14 @@ def euler_mid(f, x0, y0, h, n):
         yield x0, y0
 
 if __name__ == '__main__':
-    def f(x, y):
-        k = 0.0625
+    def f(x, y, k):
         return k*y
     
     x0, y0 = 0.0, 1027261 # x0 = t, y0 = individuos
     h = 0.0625
-    n = 1 / h
-    r1 = true_euler(f, x0, y0, h, n)
+    k = 0.0625
+    n = int(1 / h)
+    r1 = true_euler(f, k, x0, y0, h, n)
     #print(r1)
     #x1, y1 = zip(*r1)
     #print(y1)
