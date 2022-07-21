@@ -2,6 +2,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+# add a, b, funcs, func, values = x1,x2,x3
 
 def trapz(f, a, b, n):
     h = abs(b - a) / n
@@ -13,30 +14,7 @@ def trapz(f, a, b, n):
     return (f(a) + 2 * sum_fx + f(b)) * h / 2
 
 
-def trapz_romberg(f, a, b, h):
-    n = int((b - a) / h)
-    soma = 0
-
-    for k in range(1, n):
-        soma += f(a + k * h)
-
-    return (h / 2) * (f(a) + 2 * soma + f(b))
-
-
-def romberg(coluna_f1):
-    coluna_f1 = [i for i in coluna_f1]
-    n = len(coluna_f1)
-    for j in range(n - 1):
-        temp_col = [0] * (n - 1 - j)
-        for i in range(n - 1 - j):
-            power = j + 1
-            temp_col[i] = (4 ** power * coluna_f1[i + 1] - coluna_f1[i]) / (4 ** power - 1)
-        coluna_f1[:n - 1 - j] = temp_col
-        # print(f'F_{j+2} = {temp_col}')
-    return coluna_f1[0]
-
-
-def best_func(f, funcs, a, b, method: ['trapz', 256]):
+def best_func(f, funcs, a, b, n):
     k = len(funcs)
 
     A = [[0 for _ in range(k)] for _ in range(k)]
@@ -48,31 +26,14 @@ def best_func(f, funcs, a, b, method: ['trapz', 256]):
                 def f_ij(x):
                     return funcs[j](x) * funcs[i](x)
 
-                if method[0] == 'trapz':
-                    A[i][j] = trapz(f_ij, a, b, method[1])
-                elif method[0] == 'romberg':
-                    tam = int(method[1] / 2)
-                    hs = [method[2] / 2 ** ki for ki in range(tam)]
-                    coluna_f1 = [trapz_romberg(f_ij, a, b, hi) for hi in hs]
-                    A[i][j] = romberg(coluna_f1)
-                elif method[0] == 'quadratura':
-                    A[i][j] = quadratura(change(f_ij, a, b), method[1], method[2])
-
+                A[i][j] = trapz(f_ij, a, b, n)
             else:
                 A[i][j] = A[j][i]
 
         def ffi(x):
             return f(x) * funcs[i](x)
 
-        if method[0] == 'trapz':
-            B.append(trapz(ffi, a, b, method[1]))
-        elif method[0] == 'romberg':
-            tam = int(method[1] / 2)
-            hs = [method[2] / 2 ** ki for ki in range(tam)]
-            coluna_f1 = [trapz_romberg(ffi, a, b, hi) for hi in hs]
-            B.append(romberg(coluna_f1))
-        elif method[0] == 'quadratura':
-            B.append(quadratura(change(ffi, a, b), method[1], method[2]))
+        B.append(trapz(ffi, a, b, n))
 
     A = np.array(A, dtype=float)
     B = np.array(B, dtype=float)
@@ -85,13 +46,16 @@ def criar_funcoes(lista_funcoes):
         scope = {
             'lista_funcoes': lista_funcoes,
             'indice': indice,
-            'funcao': funcao,
-            'math': math
+            'funcao': funcao
         }
 
         exec('lista_funcoes[indice] = lambda x:eval(funcao)', scope)
 
     return lista_funcoes
+
+#funcao
+def f(x):
+    return 2 * math.sin(x) + math.cos(-x ** 2)
 
 
 def quadratura(funcao, pontos, pesos):
@@ -108,10 +72,6 @@ def change(f, a, b):
         return f((b + a) / 2 + (b - a) * u / 2) * (b - a) / 2
 
     return g
-
-
-def f(x):
-    return   x * math.sin(4 * x * math.cos(math.log(1 + x**2)))
 
 
 if __name__ == '__main__':
@@ -238,45 +198,30 @@ if __name__ == '__main__':
               0.10193011981724044, 0.10193011981724044, 0.08327674157670475, 0.08327674157670475, 0.06267204833410907,
               0.06267204833410907, 0.04060142980038694, 0.04060142980038694, 0.017614007139152118, 0.017614007139152118]
 
-    # funcs = ['2', 'x - 1', 'x**2 + 1', 'x**3 + x - 3', '0.5 * x**4 - 3 * x**2 + 1', 'x**5 - 4 * x + 2', 'x**7-x']
-    # a = -2.119
-    # b = 2.165
-    # values = [-1.803, 0.383, 1.841]
-    # order = 8
-    # h = (b - a) / 10
-    # method = ['romberg', order, h]
-
-    funcs =  ['1', 'x', 'math.cos(x)', 'x**2', 'math.sin(x)', 'x**3', 'math.cos(2*x)', 'x**4', 'math.sin(3*x)']
-    a = 0.059
-    b = 2.161
-    values = [0.312, 1.316, 1.975]
-    exact_for_degree_less_than = 24
-    order = str(int(exact_for_degree_less_than / 2))
-    txt_order = ['raiz' + order, 'peso' + order]
-    method = ['quadratura', locals()[txt_order[0]], locals()[txt_order[1]]]
+    funcs = ['1', 'x', 'x**2', 'x**3', 'x**4', 'x**5']
+    values = [-0.472, 0.594, 2.163] #x1, x2, x3
+    a = -1.14
+    b = 2.393
 
     funcs = criar_funcoes(funcs)
 
-    coefs = best_func(f, funcs, a, b, method)
+    coefs = best_func(f, funcs, a, b, n=256)
 
     coefs = [ci for ci in coefs]
 
     print(f'Coeficientes: {coefs}')
 
-
     def g(x):
-        return sum(ci * fi(x) for ci, fi in zip(coefs, funcs))
-
+        return sum(ci*fi(x) for ci, fi in zip(coefs, funcs))
 
     for x in values:
         print(f'g({x}) = {g(x)}')
 
     # quadratura gaussina
-    exact_for_degree_less_than = 24
-
+    exact_for_degree_less_than = 20
 
     def func_erro(x):
-        return (f(x) - g(x)) ** 2
+        return (f(x) - g(x))**2 #função erro
 
 
     order = str(int(exact_for_degree_less_than / 2))

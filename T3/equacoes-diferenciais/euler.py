@@ -1,12 +1,12 @@
 import numpy as np
 
-def true_euler(f, x0, y0, h, n):
+def true_euler(f, x0, y0, h, n):#euler normal mas funcionando
     for k in range(n):
         y0 += h * f(x0, y0)
         x0 += h        
         print(f'x_{k + 1}={x0} e y_{k+1}={y0}')
 
-def euler(f, x0, y0, h, n):
+def euler(f, x0, y0, h, n):#euler normal mas copiei errado
     vals = []
     for k in range(n):
         x0 += h
