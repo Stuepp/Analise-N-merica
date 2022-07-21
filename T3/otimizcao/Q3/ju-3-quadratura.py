@@ -111,7 +111,7 @@ def change(f, a, b):
 
 
 def f(x):
-    return   x * math.sin(4 * x * math.cos(math.log(1 + x**2)))
+    return  x * math.sin(4 * x * math.cos(math.log(1 + x**2)))
 
 
 if __name__ == '__main__':
@@ -287,7 +287,7 @@ if __name__ == '__main__':
     print(f'{erro = }')
 
     # visualizacao
-
+"""
     t = np.linspace(a, b, 200)
     ft = [f(ti) for ti in t]
     gt = [g(ti) for ti in t]
@@ -296,3 +296,4 @@ if __name__ == '__main__':
     plt.plot(t, gt)
 
     plt.savefig('otimizacao.png')
+"""
