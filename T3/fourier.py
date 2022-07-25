@@ -41,11 +41,11 @@ def fourier(c, a, b):
 
 if __name__ == '__main__':
 
-    def f(x): return 2 * math.sin(x) + math.cos(-x**2)
+    def f(x): return x * math.sin(6 * math.exp(-x**2))
 
     num_intervals = 256
     num_coeffs = 6 # numero de termos na serie == 2 * num_coeffs + 1
-    intervalo = [-1.126, 2.349]
+    intervalo = [-3.141592653589793, 3.141592653589793]
 
     c = trapz(f, intervalo[0], intervalo[1], num_intervals) / (2 * intervalo[1])
     a = [coeff_a(f, ni, num_intervals) for ni in range(1, num_coeffs)]

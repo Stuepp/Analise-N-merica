@@ -105,13 +105,14 @@ def quadratura(funcao, pontos, pesos):
 
 def change(f, a, b):
     def g(u):
-        return f((b + a) / 2 + (b - a) * u / 2) * (b - a) / 2
+        return f((b + a) / 2 + u * (b - a) / 2) * (b - a) / 2
+        #return f((b + a) / 2 + (b - a) * u / 2) * (b - a) / 2
 
     return g
 
 
 def f(x):
-    return  x * math.sin(4 * x * math.cos(math.log(1 + x**2)))
+    return x * math.sin(4 * x * math.cos(math.log(1 + x**2)))
 
 
 if __name__ == '__main__':
@@ -247,9 +248,9 @@ if __name__ == '__main__':
     # method = ['romberg', order, h]
 
     funcs =  ['1', 'x', 'math.cos(x)', 'x**2', 'math.sin(x)', 'x**3', 'math.cos(2*x)', 'x**4', 'math.sin(3*x)']
-    a = 0.059
-    b = 2.161
-    values = [0.312, 1.316, 1.975]
+    a = 0.194
+    b = 2.181
+    values = [0.596, 1.368, 1.753]
     exact_for_degree_less_than = 24
     order = str(int(exact_for_degree_less_than / 2))
     txt_order = ['raiz' + order, 'peso' + order]
