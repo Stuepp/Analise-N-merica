@@ -30,13 +30,13 @@ def ralston(f, x0, y0, h, n):
         x0 += h
         yield [x0, y0]
 
-def ralston_pontos_especificios(f, x0, y0, xs, n):
-    for i in range(1,n):
-        h = xs[i] - xs[i-1]
+def ralston_pontos_especificios(f, x0, y0, hs, n):
+    for i in range(n):
+        h = hs[i]
         m1 = f(x0, y0)
         m2 = f(x0 + 0.75*h, y0 + 0.75*h * m1)
         y0 += h * (m1 + 2 * m2) / 3
-        x0 += xs[i]
+        x0 += h
         yield [x0, y0]
 
 def RK2(f, x0, y0, h, n, b: int=1):
@@ -72,13 +72,16 @@ def RK4(f, x0, y0, h, n):
 
 if __name__ == '__main__':
     def f(x, y):
-        return y * (1 - x) + x + 2
+        return y * (2 - x) + x + 1
     
-    x0, y0 = 0.244, 1.657
+    x0, y0 = 0.284, 2.092
     b = 0.913
     h = 0.189
     n = 10
-    xs = [0.641, 0.884, 1.031, 1.379, 1.687, 1.809, 2.013, 2.303, 2.703, 2.894]
+    xs = [x0, 0.51, 0.874, 1.048, 1.259, 1.683, 1.858, 2.031, 2.404, 2.697, 2.823]
+    hs = []
+    for i in range(len(xs)-1):
+        hs.append(xs[i+1]-xs[i])
     """
     r1 = true_euler(f, x0, y0, h, n)
     print(r1)
@@ -113,7 +116,7 @@ if __name__ == '__main__':
     print(y6)
     """
     # pontos exatos
-    r7 = ralston_pontos_especificios(f,x0,y0, xs, n)
+    r7 = ralston_pontos_especificios(f,x0,y0, hs, n)
     x7,y7 = zip(*r7)
     print(y7)
 
