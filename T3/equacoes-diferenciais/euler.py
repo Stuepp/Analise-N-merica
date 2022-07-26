@@ -6,15 +6,6 @@ def true_euler(f, x0, y0, h, n):#euler normal mas funcionando
         x0 += h        
         print(f'x_{k + 1}={x0} e y_{k+1}={y0}')
 
-def euler(f, x0, y0, h, n):#euler normal mas copiei errado
-    vals = []
-    for k in range(n):
-        x0 += h
-        xk = x0 + k*h
-        y0 += h * f(xk, y0)
-        vals.append([xk,y0])
-    return vals
-
 def euler_mid(f, x0, y0, h, n):
     for _ in range(n):
         m1 = f(x0, y0)
@@ -23,21 +14,37 @@ def euler_mid(f, x0, y0, h, n):
         x0 += h
         yield x0, y0
 
+def heun(f, x0, y0, h, n):
+    for _ in range(n):
+        m1 = f(x0, y0)
+        m2 = f(x0 + h, y0 + h * m1)
+        y0 += h * (m1 + m2) / 2
+        x0 += h
+        yield [x0, y0]
+
 if __name__ == '__main__':
     def f(x, y):
         return y * (2 - x) + x + 1
     
-    x0, y0 = 0.0, 2.70955
-    h = 0.0625
-    n = 1
+    x0, y0 = 0.904, 2.736
+    h = 0.152
+    n = 10
+    """
     r1 = true_euler(f, x0, y0, h, n)
-    #print(r1)
-    #x1, y1 = zip(*r1)
-    #print(y1)
-
-    #r2 = euler_mid(f, x0, y0, h, n)
-    #x2, y2 = zip(*r2)
-    #print(y2)
+    print(r1)
+    x1, y1 = zip(*r1)
+    print(y1)
+    """
+    """
+    r2 = euler_mid(f, x0, y0, h, n)
+    x2, y2 = zip(*r2)
+    print(y2)
+    """
+    r3 =  heun(f, x0, y0, h, n)
+    #print(list(r3))
+    #print(next(r3))
+    x3, y3 = zip(*r3)
+    print(y3)
 
     #plot 
     """
