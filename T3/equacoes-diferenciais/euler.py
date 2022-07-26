@@ -30,13 +30,31 @@ def ralston(f, x0, y0, h, n):
         x0 += h
         yield [x0, y0]
 
+def RK2(f, x0, y0, h, n, b: int=1):
+    """
+    Método de Runge-Kutta geral de ordem 2
+    Por padrão usa o Método do Ponto Médio de Euler
+    que corresponde a b = 1
+    b = 1/2 corresponde ao Método de Heun
+    b = 1/3 corresponde ao Método de Ralston
+    """
+    a = 1 - b
+    p = 1 / (2 * b)
+    q = p
+    for _ in range(n):
+        m1 = f(x0, y0)
+        m2 = f(x0 + p * h, y0 + q * h * m1)
+        y0 += (a * m1 + b * m2) * h
+        x0 += h 
+        yield[x0, y0]
 
 if __name__ == '__main__':
     def f(x, y):
-        return y * (2 - x) + x + 1
+        return y * (1 - x) + x + 2
     
-    x0, y0 = 0.483, 1.299
-    h = 0.15
+    x0, y0 = 0.324, 1.738
+    b = 0.913
+    h = 0.138
     n = 10
     """
     r1 = true_euler(f, x0, y0, h, n)
@@ -56,9 +74,14 @@ if __name__ == '__main__':
     x3, y3 = zip(*r3)
     print(y3)
     """
+    """
     r4 =  ralston(f, x0, y0, h, n)
     x4, y4 = zip(*r4)
     print(y4)
+    """
+    r5 = RK2(f,x0, y0, h, n, b)
+    x5, y5 = zip(*r5)
+    print(y5)
 
     #plot 
     """
