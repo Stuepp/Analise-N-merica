@@ -5,7 +5,7 @@ def simps(f, a, b, n):
     if(n % 2 != 0):
         print('O número de subintervalos deve ser par')
         return
-    int(numParabolas) = n / 2
+    numParabolas = int(n / 2)
     soma = 0
     h = (b - a) / n
     for k in range(numParabolas):
