@@ -30,6 +30,15 @@ def ralston(f, x0, y0, h, n):
         x0 += h
         yield [x0, y0]
 
+def ralston_pontos_especificios(f, x0, y0, xs, n):
+    for i in range(1,n):
+        h = xs[i] - xs[i-1]
+        m1 = f(x0, y0)
+        m2 = f(x0 + 0.75*h, y0 + 0.75*h * m1)
+        y0 += h * (m1 + 2 * m2) / 3
+        x0 += xs[i]
+        yield [x0, y0]
+
 def RK2(f, x0, y0, h, n, b: int=1):
     """
     Método de Runge-Kutta geral de ordem 2
@@ -48,14 +57,28 @@ def RK2(f, x0, y0, h, n, b: int=1):
         x0 += h 
         yield[x0, y0]
 
+def RK4(f, x0, y0, h, n):
+    for _ in range(n):
+        m1 = f(x0, y0)
+        m2 = f(x0 + h/2, y0 + (h/2) * m1)
+        m3 = f(x0 + h/2, y0 + (h/2) * m2)
+        m4 = f(x0 + h, y0 + h * m3)
+        #yk = y0 + h * (m1 + 2 * m2 + 2 * m3 + m4) / 6 # 
+        # atualizar x0 e  y0
+        x0 += h
+        #y0 = yk
+        y0 += h * (m1 + 2 * m2 + 2 * m3 + m4) / 6
+        yield[x0, y0]
+
 if __name__ == '__main__':
     def f(x, y):
         return y * (1 - x) + x + 2
     
-    x0, y0 = 0.324, 1.738
+    x0, y0 = 0.244, 1.657
     b = 0.913
-    h = 0.138
+    h = 0.189
     n = 10
+    xs = [0.641, 0.884, 1.031, 1.379, 1.687, 1.809, 2.013, 2.303, 2.703, 2.894]
     """
     r1 = true_euler(f, x0, y0, h, n)
     print(r1)
@@ -79,9 +102,20 @@ if __name__ == '__main__':
     x4, y4 = zip(*r4)
     print(y4)
     """
+    """
     r5 = RK2(f,x0, y0, h, n, b)
     x5, y5 = zip(*r5)
     print(y5)
+    """
+    """
+    r6 = RK4(f,x0, y0, h, n)
+    x6, y6 = zip(*r6)
+    print(y6)
+    """
+    # pontos exatos
+    r7 = ralston_pontos_especificios(f,x0,y0, xs, n)
+    x7,y7 = zip(*r7)
+    print(y7)
 
     #plot 
     """
