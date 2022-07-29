@@ -13,14 +13,14 @@ def RK4(f, x0, y0, h, n):
     
 # modificar valores de r e lambd    
 def f(p, t):
-    r = 0.10259
-    lambd = 0.02967
+    r = 0.1777
+    lambd = 0.01483
     k = r * lambd
     return k * (1 - t)
 
 # modificar valor de p0    
 t0 = 0
-p0 = 0.00192
+p0 = 0.00122
 h = 1
 n = 150
 
@@ -33,13 +33,13 @@ for yi in r:
 # solução exata:
 # modificar valores de r, lambd e coef 
 def p(t):
-    r = 0.10259
-    lambd = 0.02967
+    r = 0.1777
+    lambd = 0.01483
     k = r * lambd
     # resolver:
     # solve p'(t) = k * (1 - p(t)), p(0) = p0
     # no wolfram, substituindo o valor de p0 dado na questao
-    coef = 0.99808
+    coef = 0.99878
     return 1 - coef * math.exp(-k*t)
     
 for i in range(150):
