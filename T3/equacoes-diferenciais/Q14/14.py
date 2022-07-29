@@ -44,3 +44,27 @@ def p(t):
     
 for i in range(150):
     print(f"{runge[i]}, {abs(runge[i] - p(i))},")
+
+"""
+No livro Looking at History Through Mathematics, Rashevsky [Ra], p. 103-110, considera um modelo
+para um problema envolvendo a produção de rebendes na sociedade. Considere uma sociedade com x(t)
+indivíduos no instante t, em anos, e suponha que todo rebelde que se acasale com outro rebelde 
+tenha filhos também rebeldes, enquanto uma proporção fixa r de todos os filhos de outros tipos
+de acasalamento também seja rebelde. Se for suposto que as taxas de nascimento e mortalidade
+para todos os indivíduos são as constantes λ e μ, respectivamente, e se não rebeldes e rebeldes
+dx(t)dt=(λ−μ)x(t)edxn(t)dt=(λ−μ)xn(t)+rλ(x(t)−xn(t)) ,
+em que xn(t) denota o número de rebeldes na população no instante t.
+Suponha que a variável p(t)=xn(t)/x(t) seja introduzida para representar a proporção de rebeldes na sociedade no instante t. Neste caso, as equações diferenciais acima podem ser combinadas e simplificadas na única equação diferencial
+dp(t)dt=rλ(1−p(t)).
+Considerando p(t0)=p0, com t0=0, p0=0.00122, λ=0.01483, μ=0.00601 e r=0.1777, use o método de Runge-Kutta de ordem 4 para encontrar aproximações para a solução p(t) nos instantes tk=t0+kh, onde k=1,2,…,150 e h=1 ano. Além disso, encontre a solução algébrica exata p(t) e calcule os erros |p(tk)−pk|, k=1,2,…,150. Por fim, reflita sobre o que acontecerá com a taxa de rebeldes nessa sociedade depois de alguns séculos.se acasalam aleatoriamente, o problema pode ser expresso pelas equações diferenciais
+.....
+dx(t)dt=(λ−μ)x(t)edxn(t)dt=(λ−μ)xn(t)+rλ(x(t)−xn(t)) ,
+em que xn(t) denota o número de rebeldes na população no instante t.
+Suponha que a variável p(t)=xn(t)/x(t) seja introduzida para representar a proporção de rebeldes na sociedade no instante t. Neste caso, as equações diferenciais acima podem ser combinadas e simplificadas na única equação diferencial
+dp(t)dt=rλ(1−p(t)).
+Considerando p(t0)=p0, com t0=0, p0=0.00122, λ=0.01483, μ=0.00601 e r=0.1777,
+use o método de Runge-Kutta de ordem 4 para encontrar aproximações para a solução p(t) nos instantes
+tk=t0+kh, onde k=1,2,…,150 e h=1 ano. Além disso, encontre a solução algébrica exata p(t) e calcule
+os erros |p(tk)−pk|, k=1,2,…,150. Por fim, reflita sobre o que acontecerá com a taxa de rebeldes
+nessa sociedade depois de alguns séculos.
+"""
